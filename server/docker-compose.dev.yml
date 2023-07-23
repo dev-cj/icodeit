@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  apiserver:
+    image: apiserver-dev
+    container_name: apiserver-dev
+    volumes:
+      - .:/home/apiserver
+      - /home/apiserver/node_modules
+    ports:
+      - '5555:5555' # for prisma studio in dev mode
+
+

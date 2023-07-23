@@ -1,0 +1,16 @@
+version: '3'
+services:
+  vite_react_code:
+    build:
+      context: ./code_container
+      dockerfile: Dockerfile
+    image: vite_react_code:latest
+
+  vite_react_directory_service:
+    build: 
+      context: ./proxy_container
+      dockerfile: Dockerfile
+    image: vite_react_directory_service
+
+
+

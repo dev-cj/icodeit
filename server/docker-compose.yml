@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: postgres_icodeit
+    hostname: postgres
+    ports:
+      - '6500:5432'
+    volumes:
+      - postgresDB:/data/postgres
+    env_file:
+      - ./.env
+
+  apiserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - '8000:8000'
+    # networks:
+    #   - apiserver-network
+    depends_on:
+      - postgres
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+volumes:
+  postgresDB:
+    driver: local
+
+
+

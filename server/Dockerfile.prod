@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /home/apiserver
+RUN npm install --global rimraf
+
+COPY package*.json yarn.lock ./
+RUN yarn install
+
+COPY . .
+
+RUN npx prisma generate
+
+RUN yarn build
+
+ENV NODE_ENV production
+RUN yarn install
+RUN yarn cache clean --all
+EXPOSE 8000
+
+CMD [ "yarn", "start"]

@@ -1,0 +1,5 @@
+{
+    "ignore": [
+        "playground_images/**"
+    ]
+}

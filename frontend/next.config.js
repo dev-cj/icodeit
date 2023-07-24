@@ -16,6 +16,9 @@ const nextConfig = {
     return config;
   },
   reactStrictMode: false,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

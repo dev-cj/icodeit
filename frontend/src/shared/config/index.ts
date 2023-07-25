@@ -10,7 +10,7 @@ export const isDevelopment = defaultBackendEnv() === 'development';
 
 export const DEV_BACKEND_URL = 'http://localhost:8000';
 
-export const PROD_BACKEND_URL = 'https://backend.icodeit.app';
+export const PROD_BACKEND_URL = 'https://backend.icodeit.xyz';
 
 export const getApiUrl = () => {
   const environment = defaultBackendEnv();

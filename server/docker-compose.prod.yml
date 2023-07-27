@@ -30,8 +30,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/etc/traefik
       - ./traefik/certs/cert.pem:/etc/traefik/certs/cert.pem
-      - ./traefik/certs/privkey.pem:/etc/traefik/certs/privkey.pem
+      - ./traefik/certs/privKey.pem:/etc/traefik/certs/privKey.pem
       # - traefik-ssl-certs:/ssl-certs
+    networks:
+      - traefikplaygrounds
+      - server
 
 # use traefik-ssl-certs when using acme certificates 
 # to prevent rate limiting on certificates generation between server restart
@@ -41,8 +44,8 @@ services:
 
 networks:
   traefikplaygrounds:
-    external:
-      name: traefikplaygrounds
+    name: traefikplaygrounds
+
   server:
-    external:
-      name: server
+    name: server
+

@@ -60,7 +60,7 @@ tls:
       defaultCertificate:
         # using certificates generated through certbot tool
         certFile: /etc/traefik/certs/cert.pem
-        keyFile: /etc/traefik/certs/privkey.pem
+        keyFile: /etc/traefik/certs/privKey.pem
 
 providers:
   docker:

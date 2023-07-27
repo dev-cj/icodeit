@@ -11,8 +11,8 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "build": "rimraf build && tsc -p tsconfig.json",
-    "docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
-    "docker:dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up"
+    "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "docker:dev": "docker compose -f docker-compose.yml -f docker-compose.dev.yml up"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",

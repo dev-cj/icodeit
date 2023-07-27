@@ -7,3 +7,5 @@ db
 
 build
 yarn-error.log
+
+/traefik/certs

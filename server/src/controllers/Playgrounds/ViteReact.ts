@@ -3,6 +3,7 @@ import Docker from 'dockerode';
 import type { Container, Volume, Network } from 'dockerode';
 import logger from '../../config/logger';
 import { PlaygroundBase, removePlayground } from './base';
+import { isProduction } from '../../config/config';
 
 const docker = new Docker();
 
@@ -159,14 +160,35 @@ export class ViteReact extends PlaygroundBase {
             [this.volume.name]: '/home/coder/code',
           },
         },
+        Labels: isProduction
+          ? {
+              // labels for traefik
+              'traefik.enable': 'true',
+              [`traefik.http.routers.${this.directoryService.name}.rule`]: `Host(\`${this.coderService.name}.icodeit.xyz\`)`,
+              [`traefik.http.services.${this.directoryService.name}.loadbalancer.server.port`]:
+                '1337',
+              [`traefik.http.routers.${this.directoryService.name}.entrypoints`]: 'playground',
+              'traefik.docker.network': 'traefikplaygrounds',
+            }
+          : {},
         HostConfig: {
-          // AutoRemove: true,
           PublishAllPorts: true,
           Binds: [`${this.volume.name}:/home/coder/code`],
         },
       })
       .then(async (container) => {
         this.directoryService.id = container.id;
+        if (isProduction) {
+          // connect to traefik network in production
+
+          docker
+            .getNetwork('traefikplaygrounds')
+            .connect({
+              Container: container.id,
+            })
+            .catch(() => null);
+        }
+
         this.directoryService.instance = container;
         await this.network.instance
           .connect({
@@ -274,7 +296,7 @@ export class ViteReact extends PlaygroundBase {
         })
         .catch((err) => {
           if (err) {
-            throw Error('Error stopping DS');
+            throw Error('Error stopping directory service');
           }
         });
       const volume = docker.getVolume(this.volume.name);

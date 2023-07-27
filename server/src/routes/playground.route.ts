@@ -44,9 +44,9 @@ const getPlaygroundWebUrl = (name, port) => {
   if (isDevelopment) {
     return `http://localhost:${port}`;
   }
-  // in production port of container will be mapped by name of playground
-  // 1337
-  return `https://${name}.icodeit.app:1337`;
+  // in production traefik will use iternal port 1337 of container
+  // this 1337 port is used by traefik mapped to 1337:1337 i.e., host:traefik
+  return `https://${name}.icodeit.xyz:1337`;
 };
 
 router.post(
@@ -83,7 +83,7 @@ router.post(
     const { error, message } = await createAndStartPlayground(
       type as playgroundType,
       playgroundId,
-      '',
+      '', // when creating new playground get code files url is not needed
       filesPutUrl
     );
     if (error) {

@@ -8,6 +8,7 @@ services:
       - .:/home/apiserver
       - /home/apiserver/node_modules
     ports:
-      - '5555:5555' # for prisma studio in dev mode
+      - "5555:5555" # for prisma studio in dev mode
+      - "8000:8000"
 
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 cd ./playground_images/vite-react
 docker compose build

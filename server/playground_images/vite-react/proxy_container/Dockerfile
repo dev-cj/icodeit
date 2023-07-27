@@ -30,9 +30,11 @@ RUN chmod +x ${HOME}/backup.sh
 
 WORKDIR ${HOME}/code
 ENV codeservicename ''
-EXPOSE 8002
+
 EXPOSE 1337
+EXPOSE 8002
 # for file server
+
 
 ENTRYPOINT ["/home/coder/entrypoint.sh"]
 

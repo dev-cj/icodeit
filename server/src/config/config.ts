@@ -27,7 +27,8 @@ export default {
 };
 
 export const isDevelopment = EnvVars.NODE_ENV === 'development';
+export const isProduction = !isDevelopment;
 
 export const backendHost = isDevelopment
   ? `http://localhost:${EnvVars.PORT}`
-  : `https://backend.icodeit.app`;
+  : `https://backend.icodeit.xyz`;

@@ -1,0 +1,113 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false # true by default
+
+# Entry Points configuration
+# ---
+entryPoints:
+  web:
+    address: ':80'
+    # Redirect to HTTPS
+    # ---
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+
+  websecure:
+    address: ':443'
+    http:
+      tls:
+        # certResolver: certResolver
+        domains:
+          - main: 'backend.icodeit.xyz'
+            sans:
+              - '*.icodeit.xyz'
+  playground:
+    address: ':1337'
+    http:
+      tls:
+        # certResolver: certResolver
+        domains:
+          - main: '*.icodeit.xyz'
+
+# Configure your CertificateResolver here...
+# ---
+# certificatesResolvers:
+#   certResolver:
+#     acme:
+#       email: your-email@example.com
+#       storage: /etc/traefik/acme/acme.json
+#       # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+#       httpChallenge:
+#         # used during the challenge
+#         entryPoint: websecure
+
+#
+#   production:
+#     acme:
+#       email: your-email@example.com
+#       storage: /etc/traefik/certs/acme.json
+#       caServer: "https://acme-v02.api.letsencrypt.org/directory"
+#       httpChallenge:
+#         entryPoint: web
+
+# (Optional) Overwrite Default Certificates
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        # using certificates generated through certbot tool
+        certFile: /etc/traefik/certs/cert.pem
+        keyFile: /etc/traefik/certs/privkey.pem
+
+providers:
+  docker:
+    watch: true
+    exposedByDefault: false # Default is true
+  file:
+    # watch for dynamic configuration changes
+    directory: /etc/traefik
+    watch: true
+
+# Enable API and dashboard
+#
+# Optional
+#
+api:
+  #   # Enable the API in insecure mode
+
+  #   # Optional
+  #   Default: false
+
+  # insecure: true
+
+  #   # Enabled Dashboard
+
+  #   # Optional
+  #   Default: true
+  dashboard: false
+################################################################
+# Traefik logs configuration
+################################################################
+
+# Traefik logs
+# Enabled by default and log to stdout
+#
+# Optional
+#
+# log:
+# Log level
+#
+# Optional
+# Default: "ERROR"
+#
+#  level: DEBUG
+
+# uncomment this to see traefik router on port 8080
+# http:
+#   routers:
+#     dashboard:
+#       rule: Host(`traefik.icodeit.xyz`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+#       service: api@internal

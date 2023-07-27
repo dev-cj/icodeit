@@ -38,6 +38,7 @@
 
 ## Pre-requisites for production
 * minimum system requirement 2gb ram and 2 cpu cores or t2.medium
+* replace icodeit.xyz in server repository with your domain
 * platform uses https, use self generated certificates using certbot tool and copy 
     > cert.pem to /traefik/certs/cert.pem
 
@@ -76,12 +77,12 @@
     ```
     * when running for first time, open another terminal shell into container and create db
         ```
-        docker exec -it apiserver-dev /bin/sh
+        docker exec -it apiserver-prod /bin/sh
         ``` 
         ```
         yarn db:push
         ```
-        restart the server or trigger server restart by saving a file
+        restart the server
 
 ## important
 playground connections with clients and active playgrounds data will get lost between server restart.

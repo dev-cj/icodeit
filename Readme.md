@@ -11,7 +11,8 @@ This is a fullstack project by [CJ](github.com/dev-cj).
     * browser panel to view live preview
 
 ## icodeit in action
-<video src="https://res.cloudinary.com/di7l26baz/video/upload/v1692127509/github/icodeit/icodeit_in_action_cs4evx.mp4"></video>
+![](icodeit.png)
+[Click to watch](https://res.cloudinary.com/di7l26baz/video/upload/v1692127509/github/icodeit/icodeit_in_action_cs4evx.mp4)
 
 
 

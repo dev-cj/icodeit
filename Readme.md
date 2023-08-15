@@ -43,3 +43,10 @@ This is a fullstack project by [CJ](github.com/dev-cj).
 * prisma
 * typescript
 * socket.io
+
+
+## Run icodeit
+
+1. Star this repo
+2. Start server. Read instructions in server folder.
+3. Start frontend. Read instruction in frontend folder.

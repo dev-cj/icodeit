@@ -12,7 +12,7 @@ This is a fullstack project by [CJ](github.com/dev-cj).
 
 ## icodeit in action
 ![](icodeit.png)
-[Click to watch](https://res.cloudinary.com/di7l26baz/video/upload/v1692127509/github/icodeit/icodeit_in_action_cs4evx.mp4)
+[Watch video](https://res.cloudinary.com/di7l26baz/video/upload/v1692127509/github/icodeit/icodeit_in_action_cs4evx.mp4)
 
 
 
